@@ -19,7 +19,6 @@ const recordCollection = {
   }
 };
 
-// Only change code below this line
 function updateRecords(records, id, prop, value) {
   if (value == "")
   {
