@@ -43,4 +43,10 @@ function updateRecords(records, id, prop, value) {
   return records;
 }
 
-updateRecords(recordCollection, 5439, 'artist', 'ABBA');
+console.log(updateRecords(recordCollection, 5439, 'artist', 'ABBA'));
+console.log(updateRecords(recordCollection, 5439, "tracks", "Take a Chance on Me"));
+console.log(updateRecords(recordCollection, 2548, "artist", ""));
+console.log(updateRecords(recordCollection, 1245, "tracks", "Addicted to Love"));
+console.log(updateRecords(recordCollection, 2468, "tracks", "Free"));
+console.log(updateRecords(recordCollection, 2548, "tracks", ""));
+console.log(updateRecords(recordCollection, 1245, "albumTitle", "Riptide"));
