@@ -15,3 +15,11 @@ quoteSample = "Blueberry 3.141592653s are delicious.";
 let myRegex = /[h-s2-6]/gi; 
 result = quoteSample.match(myRegex); 
 console.log(result);
+
+// Match All Letters and Numbers
+// Use the shorthand character class \w to count the number of alphanumeric characters in various quotes and strings.
+// \w. This shortcut is equal to [A-Za-z0-9_]
+quoteSample = "The five boxing wizards jump quickly.";
+let alphabetRegexV2 = /\w/g; // Change this line
+result = quoteSample.match(alphabetRegexV2).length;
+console.log(result);
