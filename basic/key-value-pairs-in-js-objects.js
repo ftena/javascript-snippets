@@ -19,3 +19,8 @@ console.log(tekkenCharacter);
 const eyes = 'eye color';
 tekkenCharacter[eyes] = 'brown';
 console.log(tekkenCharacter);
+
+// Delete some elements
+delete tekkenCharacter['eye color'];
+delete tekkenCharacter.human;
+console.log(tekkenCharacter);
