@@ -27,7 +27,7 @@ function Dog(name, color) {
 
 let terrier = new Dog("Bro", "black");
 console.log(terrier);
-console.log("instance of Bird? " + (terrier instanceof Dog));
+console.log("Is the terrier an instance of Bird? " + (terrier instanceof Dog));
 
 // Constructor property
 let myDog = new Dog("Peter");
@@ -46,13 +46,14 @@ Dog.prototype = {
     console.log("nom nom nom");
   },
   describe: function() {
-    console.log("My name is " + this.name);
+    console.log("My name is " + this.name
+	    + ", my color is "  + this.color
+	    + ", I have " + this.numLegs + " leg(s)" 
+	    + ", and I have " + this.numTails + " tail(s).");
   }
 };
 
-let snoopy = new Dog("Snoopy");
-console.log(snoopy.numTails);
-snoopy.eat();
+let snoopy = new Dog("Snoopy", "white");
 snoopy.describe();
 
 // Prototype Chain
