@@ -30,13 +30,20 @@ console.log(terrier);
 console.log("Is the terrier an instance of Bird? " + (terrier instanceof Dog));
 
 // Constructor property
-let myDog = new Dog("Peter");
+let peter = new Dog("Peter");
 
 function joinDogFraternity(candidate) {
   return (candidate.constructor === Dog);
 }
 
-console.log("Is myDog a Dog? " + joinDogFraternity(myDog));
+console.log("Is myDog a Dog? " + joinDogFraternity(peter));
+
+// Add new property to the Dog prototype
+Dog.prototype.size = 30;
+
+let ben = new Dog("Ben");
+
+console.log("Ben size: " + ben.size);
 
 // Add properties all at once
 Dog.prototype = {
@@ -56,6 +63,42 @@ Dog.prototype = {
 let snoopy = new Dog("Snoopy", "white");
 snoopy.describe();
 
-// Prototype Chain
+// Prototype chain
 console.log(Dog.prototype.isPrototypeOf(snoopy));  // yields true
 console.log(Object.prototype.isPrototypeOf(Dog.prototype)); // Object is the supertype for all objects in JavaScript
+
+// Inheritance, supertypes and subtypes
+function Animal() { }
+
+Animal.prototype = {
+  constructor: Animal,
+  eat: function() {
+    console.log("nom nom nom");
+  }
+};
+
+let animal = Object.create(Animal.prototype);
+
+function Eagle() { }
+
+Eagle.prototype = Object.create(Animal.prototype); // set the prototype of the subtype to be an instance of Animal
+Eagle.prototype.constructor = Eagle; // constructed by Eagle, not Animal
+
+let falcon = new Eagle();
+falcon.eat();
+
+// Add methods after inheritance
+Eagle.prototype.fly = function() {
+  console.log("I'm flying!");
+};
+
+let star = new Eagle();
+star.eat();
+star.fly();
+
+// Override inherited method
+Eagle.prototype.eat = function() {
+  console.log("Eeek!");
+}
+let marvel = new Eagle();
+marvel.eat();
