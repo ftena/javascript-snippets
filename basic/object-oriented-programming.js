@@ -102,3 +102,23 @@ Eagle.prototype.eat = function() {
 }
 let marvel = new Eagle();
 marvel.eat();
+
+// Use a mixin to add common behavior between unrelated objects
+let bird = {
+  name: "Donald",
+  numLegs: 2
+};
+
+let boat = {
+  name: "Warrior",
+  type: "race-boat"
+};
+
+let glideMixin = function(obj) {
+  obj.glide = function() {
+    console.log("I can glide!");
+  }
+};
+
+glideMixin(bird);
+glideMixin(boat);
