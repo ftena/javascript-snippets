@@ -26,7 +26,7 @@ function Dog(name, color) {
 }
 
 let terrier = new Dog("Bro", "black");
-console.log(terrier);
+console.log("My name is " + terrier.name + " and I have " + terrier.color + " color and " + terrier.numLegs + " legs");
 console.log("Is the terrier an instance of Bird? " + (terrier instanceof Dog));
 
 // Constructor property
@@ -102,3 +102,22 @@ Eagle.prototype.eat = function() {
 }
 let marvel = new Eagle();
 marvel.eat();
+
+// Use Closure to Protect Properties
+/* The simplest way to make this public property private is by creating a
+* variable within the constructor function. This changes the scope of that
+* variable to be within the constructor function versus available globally.
+* This way, the variable can only be accessed and changed by methods
+* also within the constructor function.
+*/
+function Ship(name) {
+  this.name = name;
+  let speed = 10;
+
+  this.getSpeed = function() { 
+    return speed;
+  };
+}
+let sunny = new Ship("Sunny");
+console.log("The speed of the " + sunny.name + " is " + sunny.getSpeed() + " kts");
+console.log("The speed of the " + sunny.name + " is " + sunny.speed + " kts");
