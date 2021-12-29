@@ -103,6 +103,26 @@ Eagle.prototype.eat = function() {
 let marvel = new Eagle();
 marvel.eat();
 
+// Use a mixin to add common behavior between unrelated objects
+let bird = {
+  name: "Donald",
+  numLegs: 2
+};
+
+let boat = {
+  name: "Warrior",
+  type: "race-boat"
+};
+
+let glideMixin = function(obj) {
+  obj.glide = function() {
+    console.log("I can glide!");
+  }
+};
+
+glideMixin(bird);
+glideMixin(boat);
+
 // Use Closure to Protect Properties
 /* The simplest way to make this public property private is by creating a
 * variable within the constructor function. This changes the scope of that
@@ -121,3 +141,5 @@ function Ship(name) {
 let sunny = new Ship("Sunny");
 console.log("The speed of the " + sunny.name + " is " + sunny.getSpeed() + " kts");
 console.log("The speed of the " + sunny.name + " is " + sunny.speed + " kts");
+
+
