@@ -8,7 +8,7 @@ let duck = {
 console.log(duck.sayName());
 
 // Using constructor to create objetcs
-function Bird() {
+function Bird(){
   this.name = "Albert";
   this.color  = "blue";
   this.numLegs = 2;
