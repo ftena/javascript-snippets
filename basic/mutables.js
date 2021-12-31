@@ -6,10 +6,17 @@ s[2] = 45;
 console.log(s); // [5, 6, 45]
 
 let arr = [1, 2, 3];
-console.log(arr);
+console.log("arr = " + arr);
 let arr2 = arr;
 arr2[2] = 33;
-console.log(arr); // [1, 2, 33]
+console.log("arr = " + arr); // [1, 2, 33]
+
+let arr3 = [...arr];
+arr[2] = -333;
+arr3[2] = 333;
+console.log("arr = " + arr); 
+console.log("arr2 = " + arr2); 
+console.log("arr3 = " + arr3); 
 
 // Prevent object mutation
 
