@@ -1,5 +1,4 @@
 // In JavaScript, only objects and arrays are mutable, not primitive values.
-
 const s = [5, 6, 7];
 // s = [1, 2, 3]; // error
 s[2] = 45;
@@ -14,12 +13,15 @@ console.log("arr = " + arr); // [1, 2, 33]
 let arr3 = [...arr];
 arr[2] = -333;
 arr3[2] = 333;
-console.log("arr = " + arr); 
-console.log("arr2 = " + arr2); 
-console.log("arr3 = " + arr3); 
+console.log("arr = " + arr); //1, 2, -333 
+console.log("arr2 = " + arr2); //1, 2, -333 
+console.log("arr3 = " + arr3); //1, 2, 333 
+
+// The splice method mutates also the original arrays
+arr.splice(2,1);
+console.log("arr = " + arr); //1, 2 
 
 // Prevent object mutation
-
 let obj = {
   name:"name",
   review:"review"
