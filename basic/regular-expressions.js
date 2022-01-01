@@ -102,8 +102,8 @@ console.log(result);
 
 // Use Capture Groups to Search and Replace
 let str = "one two three";
-let fixRegex = /(one) (two) (three)/; // Change this line
-let replaceText = "$3 $2 $1"; // Change this line
+let fixRegex = /(one) (two) (three)/; 
+let replaceText = "$3 $2 $1"; 
 result = str.replace(fixRegex, replaceText);
 console.log(result);
 
