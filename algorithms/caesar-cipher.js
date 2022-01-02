@@ -1,9 +1,21 @@
 function rot13(str) {
+	let result = "";
+
 	for (let i = 0; i < str.length; i++) {
-		console.log(str[i] + " : " + String.fromCharCode((str[i].charCodeAt() - 13) % 13 + 65));
+		if ((/[N-Z]/).test(str[i]))
+		{
+			result += String.fromCharCode((str[i].charCodeAt() - 13));
+		}
+		else if ((/[A-M]/).test(str[i]))
+		{
+			result += String.fromCharCode((str[i].charCodeAt() + 13));
+		} else {
+			result += str[i];
+		}
 	}
 
-	return str;
+	return result;
 }
 
-rot13("NOZ");
+console.log(rot13("NOYZAB"));
+console.log(rot13("SERR CVMMN!"));
