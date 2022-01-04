@@ -27,7 +27,7 @@ function nonMutatingSort(arr) {
 
   return nonGlobalArray.sort(function(a, b) {
     return a === b ? 0 : a < b ? -1 : 1;
-  });;
+  });
 }
 
 console.log(nonMutatingSort(globalArray));
