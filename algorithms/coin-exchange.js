@@ -31,6 +31,11 @@ choose-coins: C -> v * k
 }
 */
 
+const solution = {
+  status: "OPEN",
+  change: []
+};
+
 function alphabeticalOrder(arr) {
   return arr.sort(function(a, b) {
     return a === b ? 0 : a < b ? -1 : 1;
@@ -38,84 +43,111 @@ function alphabeticalOrder(arr) {
 }
 
 function toValue(coin) {
+    let value = 0;
+    
     switch (coin) {
         case "PENNY":
-            return 0.01;
+            value = 0.01;
             break;
         case "NICKEL":
-            return 0.05;
+            value = 0.05;
             break;
         case "DIME":
-            return 0.1;
+            value = 0.1;
             break;
         case "QUARTER":
-            return 0.25;
+            value = 0.25;
             break;
         case "ONE":
-            return 1;
+            value = 1;
             break;
         case "FIVE":
-            return 5;
+            value = 5;
             break;
         case "TEN":
-            return 10;
+            value = 10;
             break;
         case "TWENTY":
-            return 20;
+            value = 20;
             break;
         case "ONE HUNDRED":
-            return 100;
+            value = 100;
             break;
     }
+
+    return value;
+}
+
+function toCoinName(value) {
+    let coinName = "";
+    
+    switch (value) {
+        case 0.01:
+            coinName = "PENNY";
+            break;
+        case 0.05:
+            coinName = "NICKEL";
+            break;
+        case 0.1:
+            coinName = "DIME";
+            break;
+        case 0.25:
+            coinName = "QUARTER";
+            break;
+        case 1:
+            coinName = "ONE";
+            break;
+        case 5:
+            coinName = "FIVE";
+            break;
+        case 10:
+            coinName = "TEN";
+            break;
+        case 20:
+            coinName = "TWENTY";
+            break;
+        case 100:
+            coinName = "ONE HUNDRED";
+            break;
+    }
+
+    return coinName;
 }
 
 function checkCashRegister(price, cash, cid) {
     let change = cash - price;
-    let sortedCid = cid.map(coin => [toValue(coin[0]), coin[1]]);
-    let solution = [];
+    let sortedCid = cid.map(coin => [toValue(coin[0]), Math.round(coin[1]/toValue(coin[0]))]);
+    // let solution = [];
 
     sortedCid.sort(function (a, b) {
         return b[0] - a[0];
     });
 
-    console.log(cid);
+    //console.log(cid);
     console.log(sortedCid);
-
+    //console.log("change: " + change);
+    
     let changeDue = [...sortedCid];
     let coins = 0;
     let coinsUnits = 0;
 
     while (/*change != 0 && */changeDue.length != 0) {
-        let coinValue = changeDue.shift(); //<v, k> < - choose - coins(C)
-            coinsUnits = Math.min(coinValue[1], Math.floor(change / coinValue[0]));
-            console.log("coinValue: " + coinValue + " coinsUnits: " + coinsUnits + " change: " + change + " change/coinValue: " + Math.floor(change/coinValue[0]));
-            if (coinsUnits >= 1) {
-                solution.push(coinValue);
-                change = change - coinValue[0] * coinsUnits;
-                console.log("   change: " + change + " coin*value: " + coinValue[0]*coinsUnits);
+        let coinsAndValue = changeDue.shift(); //<v, k> < - choose - coins(C)
+            coinsUnits = Math.min(coinsAndValue[1], Math.floor(change / coinsAndValue[0]));
+            console.log("coinValue: " + coinsAndValue + " coinsUnits: " + coinsUnits + " change: " + change + " change/coinValue: " + Math.floor(change/coinsAndValue[0]));
+            if (coinsUnits > 0) {
+                solution.change.push([toCoinName(coinsAndValue[0]), coinsAndValue[0]*coinsUnits]);
+                change = Math.round( (change - (coinsAndValue[0] * coinsUnits)) *100 ) / 100;
+                console.log("   change: " + change + " coin*value: " + coinsAndValue[0]*coinsUnits);
             }
     }
 
-    console.log("solution: " + solution);
-/*
-choose - coins: C -> v * k
-{
-    v <- (-inf)
-    for <a, b> in C
-    {
-        if a > v
-        {
-            <v, k> <- <a, b>
-        }
-    }
-}
-
-*/
+    console.log(solution);
     return change;
 }
 
-//checkCashRegister(19.5, 20, [["PENNY", 1.01],["NICKEL", 2.05], ["DIME", 3.1],
-//["QUARTER", 4.25], ["ONE", 90], ["FIVE", 55], ["TEN", 20], ["TWENTY", 60], ["ONE HUNDRED", 100]]);
+checkCashRegister(19.5, 20, [["PENNY", 1.01],["NICKEL", 2.05], ["DIME", 3.1],
+["QUARTER", 4.25], ["ONE", 90], ["FIVE", 55], ["TEN", 20], ["TWENTY", 60], ["ONE HUNDRED", 100]]);
 
 checkCashRegister(3.26, 100, [["PENNY", 1.01], ["NICKEL", 2.05], ["DIME", 3.1],
 ["QUARTER", 4.25], ["ONE", 90], ["FIVE", 55], ["TEN", 20], ["TWENTY", 60], ["ONE HUNDRED", 100]]);
