@@ -85,25 +85,27 @@ function checkCashRegister(price, cash, cid) {
     let coins = 0;
     let coinsUnits = 0;
 
-    while (change = !0 && !changeDue.empty) {
+    while (/*change != 0 && */changeDue.length != 0) {
         let coinValue = changeDue.shift(); //<v, k> < - choose - coins(C)
-        //TODO: changeDue = changeDue - { < v, k > };
-        console.log(coinValue);
-        coinsUnits = Math.min(coinValue[1], coins / coinValue[0]);
-        if (coinsUnits > 0) {
-            solution.push(coinValue);
-            change = change - coinValue[0] * coinValue[1];
-        }
+            coinsUnits = Math.min(coinValue[1], Math.floor(change / coinValue[0]));
+            console.log("coinValue: " + coinValue + " coinsUnits: " + coinsUnits + " change: " + change + " change/coinValue: " + Math.floor(change/coinValue[0]));
+            if (coinsUnits >= 1) {
+                solution.push(coinValue);
+                change = change - coinValue[0] * coinsUnits;
+                console.log("   change: " + change + " coin*value: " + coinValue[0]*coinsUnits);
+            }
     }
+
+    console.log("solution: " + solution);
 /*
 choose - coins: C -> v * k
 {
-    v < - inf
+    v <- (-inf)
     for <a, b> in C
     {
         if a > v
         {
-            <v, k> < - <a, b >
+            <v, k> <- <a, b>
         }
     }
 }
@@ -112,4 +114,8 @@ choose - coins: C -> v * k
     return change;
 }
 
-checkCashRegister(19.5, 20, [["PENNY", 1.01], ["NICKEL", 2.05], ["DIME", 3.1], ["QUARTER", 4.25], ["ONE", 90], ["FIVE", 55], ["TEN", 20], ["TWENTY", 60], ["ONE HUNDRED", 100]]);
+//checkCashRegister(19.5, 20, [["PENNY", 1.01],["NICKEL", 2.05], ["DIME", 3.1],
+//["QUARTER", 4.25], ["ONE", 90], ["FIVE", 55], ["TEN", 20], ["TWENTY", 60], ["ONE HUNDRED", 100]]);
+
+checkCashRegister(3.26, 100, [["PENNY", 1.01], ["NICKEL", 2.05], ["DIME", 3.1],
+["QUARTER", 4.25], ["ONE", 90], ["FIVE", 55], ["TEN", 20], ["TWENTY", 60], ["ONE HUNDRED", 100]]);
