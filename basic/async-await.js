@@ -25,3 +25,18 @@ const aFunction = async () => {
 }
 
 aFunction().then(alert => console.log(alert)) // This will alert 'test'
+
+// example
+/*
+  const getFirstUserData = async () => {
+  const response = await fetch('/users.json') // get users list
+  const users = await response.json() // parse JSON
+  const user = users[0] // pick first user
+  const userResponse = await fetch(`/users/${user.name}`) // get user data
+  const userData = await userResponse.json() // parse JSON
+  return userData
+}
+
+  getFirstUserData()
+*/
+
