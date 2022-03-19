@@ -40,11 +40,11 @@ const watchList = [
 // Using ES6 notation, each item in array is processed to extract title and rating.
 // Parantheses are needed to return an object.
 const ratings = watchList.map(movie => ({"title": movie.Title, "rating": movie.imdbRating}));
-console.log(JSON.stringify(ratings));
+console.log("after map: " + JSON.stringify(ratings));
 
 // Filter >= 8.0
 const filtered = ratings.filter(movie => Number(movie.rating) >= 8.0);
-console.log(JSON.stringify(filtered));
+console.log("after filter: " + JSON.stringify(filtered));
 
 // Another option
 var filteredList = watchList
