@@ -30,6 +30,9 @@ checkIfItsDone()
 
 // Because we've created the promise in the above snippet,
 // it has already started executing. 
+// A more common example you may come across is a technique called Promisifying.
+// This technique is a way to be able to use a classic JavaScript function
+// that takes a callback, and have it return a promise:
 const fs = require('fs')
 
 const getFile = (fileName) => {
