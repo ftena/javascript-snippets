@@ -14,6 +14,7 @@ function Bird(){
   this.numLegs = 2;
 }
 
+// Notice that the new operator is used when calling a constructor.
 let blueBird = new Bird();
 console.log(blueBird);
 console.log("instance of Bird? " + (blueBird instanceof Bird));
