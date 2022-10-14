@@ -1,3 +1,5 @@
+// more info @ https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures/#object-oriented-programming
+
 // Object using this keyword
 let duck = {
   name: "Aflac",
